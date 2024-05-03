@@ -1,0 +1,25 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+
+$route['default_controller'] = 'welcome';
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
+
+$route['admin/dang-nhap'] = 'Admin/DangNhap';
+$route['admin/dang-xuat'] = 'Admin/DangXuat';
+
+$route['admin'] = 'Admin/TrangChu';
+$route['admin/ca-nhan'] = 'Admin/CaNhan';
+$route['admin/cau-hinh'] = 'Admin/CauHinh';
+
+
+$route['admin/giao-dien'] = 'Admin/GiaoDien';
+
+
+$route['admin/lien-he'] = 'Admin/LienHe';
+$route['admin/lien-he/(:any)/trang'] = 'Admin/LienHe/page/$1';
+$route['admin/lien-he/(:any)/xem'] = 'Admin/LienHe/view/$1';
+
+
+
