@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2024 at 07:03 PM
+-- Generation Time: May 04, 2024 at 07:20 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -41,6 +41,13 @@ CREATE TABLE `baiviet` (
   `TrangThai` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `baiviet`
+--
+
+INSERT INTO `baiviet` (`MaBaiViet`, `TieuDe`, `NoiDung`, `MaNguoiDung`, `ThoiGian`, `AnhChinh`, `DuongDan`, `BaiVietNoiBat`, `LoaiBaiViet`, `LuotXem`, `TrangThai`) VALUES
+(1, 'Bài viết test', 'Bài viết test', 1, '2024-05-04 15:41:18', 'https://static.wixstatic.com/media/84b06e_5995423794034ffb9e898152c2f8c9e5~mv2.png/v1/fill/w_924,h_528,al_c,q_90,enc_auto/84b06e_5995423794034ffb9e898152c2f8c9e5~mv2.png', 'bai-viet-test', 0, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -75,8 +82,17 @@ CREATE TABLE `binhluan` (
   `HoTen` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `NoiDung` varchar(500) NOT NULL,
+  `ThoiGian` datetime NOT NULL DEFAULT current_timestamp(),
   `TrangThai` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `binhluan`
+--
+
+INSERT INTO `binhluan` (`MaBinhLuan`, `MaBaiViet`, `HoTen`, `Email`, `NoiDung`, `ThoiGian`, `TrangThai`) VALUES
+(1, 1, 'Nguyễn Văn An', 'nguyenvanan@gmail.com', 'Hay lắm', '2024-05-04 15:46:27', 1),
+(2, 1, 'Nguyễn Văn Bình', 'nguyenvanbinh@gmail.com', 'Hay tuyệt', '2024-05-04 15:49:32', 1);
 
 -- --------------------------------------------------------
 
@@ -120,8 +136,20 @@ CREATE TABLE `chuyenmuc` (
   `AnhChinh` text NOT NULL,
   `HienThiMenu` int(11) NOT NULL DEFAULT 0,
   `HienThiTrangChu` int(11) NOT NULL DEFAULT 0,
+  `HienThiWidget` int(11) NOT NULL DEFAULT 0,
   `TrangThai` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `chuyenmuc`
+--
+
+INSERT INTO `chuyenmuc` (`MaChuyenMuc`, `TenChuyenMuc`, `ChuyenMucCha`, `DuongDan`, `AnhChinh`, `HienThiMenu`, `HienThiTrangChu`, `HienThiWidget`, `TrangThai`) VALUES
+(1, 'Chuyên Mục Mới Cha', NULL, 'chuyen-muc-moi', 'abc.jpg', 0, 0, 0, 1),
+(2, 'Chuyên Mục Mới Con', 1, 'chuyen-muc-moi', 'http://localhost/news/uploads/logo10.png', 0, 0, 0, 1),
+(3, 'Chuyên mục cháu', NULL, 'chuyen-muc-chau', 'abc.jpg', 0, 0, 0, 1),
+(4, 'Tin mới', NULL, 'tin-moi', 'http://localhost/news/uploads/logo9.png', 1, 1, 1, 1),
+(5, 'Tin mới 2', NULL, 'tin-moi-2', 'http://localhost/news/uploads/logo11.png', 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -136,6 +164,16 @@ CREATE TABLE `giaodien` (
   `HinhAnh` text NOT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `giaodien`
+--
+
+INSERT INTO `giaodien` (`MaGiaoDien`, `LoaiGiaoDien`, `DuongDan`, `HinhAnh`, `TrangThai`) VALUES
+(1, 3, 'http://localhost/news/', 'http://localhost/news/uploads/pen-inside-the-book-271ld1.png', 1),
+(2, 1, 'http://localhost/news/', 'http://localhost/news/uploads/logo5.png', 1),
+(3, 2, 'http://localhost/news/', 'http://localhost/news/uploads/logo3.png', 1),
+(4, 3, 'http://localhost/news/', 'http://localhost/news/uploads/logo6.png', 1);
 
 -- --------------------------------------------------------
 
@@ -194,9 +232,18 @@ INSERT INTO `nguoidung` (`MaNguoiDung`, `HoTen`, `Email`, `SoDienThoai`, `AnhChi
 CREATE TABLE `the` (
   `MaThe` int(11) NOT NULL,
   `TenThe` varchar(255) NOT NULL,
+  `HienThiWidget` int(11) NOT NULL DEFAULT 0,
   `DuongDan` text NOT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `the`
+--
+
+INSERT INTO `the` (`MaThe`, `TenThe`, `HienThiWidget`, `DuongDan`, `TrangThai`) VALUES
+(1, 'Thẻ mới', 1, 'the-moi', 1),
+(2, 'Bóng Đá', 1, 'bong-da', 1);
 
 --
 -- Indexes for dumped tables
@@ -270,25 +317,25 @@ ALTER TABLE `the`
 -- AUTO_INCREMENT for table `baiviet`
 --
 ALTER TABLE `baiviet`
-  MODIFY `MaBaiViet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaBaiViet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `MaBinhLuan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaBinhLuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `chuyenmuc`
 --
 ALTER TABLE `chuyenmuc`
-  MODIFY `MaChuyenMuc` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaChuyenMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `giaodien`
 --
 ALTER TABLE `giaodien`
-  MODIFY `MaGiaoDien` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaGiaoDien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `lienhe`
@@ -306,7 +353,7 @@ ALTER TABLE `nguoidung`
 -- AUTO_INCREMENT for table `the`
 --
 ALTER TABLE `the`
-  MODIFY `MaThe` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaThe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
