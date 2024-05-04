@@ -38,7 +38,7 @@ function generateOptions($categories, $parentId = NULL, $level = 0) {
       <div class="container-fluid">
         <div class="card card-default">
           <div class="card-header">
-            <h5>Thêm Chuyên Mục Sách</h5>
+            <h5>Thêm Chuyên Mục</h5>
           </div>
           <!-- /.card-header -->
           <div class="card-body">

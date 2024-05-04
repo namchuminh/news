@@ -43,3 +43,11 @@ $route['admin/chuyen-muc/(:any)/sua'] = 'Admin/ChuyenMuc/update/$1';
 $route['admin/chuyen-muc/(:any)/xoa'] = 'Admin/ChuyenMuc/delete/$1';
 $route['admin/chuyen-muc/tim-kiem'] = 'Admin/ChuyenMuc/search';
 $route['admin/chuyen-muc/tim-kiem/(:any)/trang'] = 'Admin/ChuyenMuc/pageSearch/$1';
+
+$route['admin/loai-the'] = 'Admin/The';
+$route['admin/loai-the/(:any)/trang'] = 'Admin/The/page/$1';
+$route['admin/loai-the/them'] = 'Admin/The/add';
+$route['admin/loai-the/(:any)/sua'] = 'Admin/The/update/$1';
+$route['admin/loai-the/(:any)/xoa'] = 'Admin/The/delete/$1';
+$route['admin/loai-the/tim-kiem'] = 'Admin/The/search';
+$route['admin/loai-the/tim-kiem/(:any)/trang'] = 'Admin/The/pageSearch/$1';
