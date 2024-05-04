@@ -28,30 +28,30 @@
                 <form class="row" action="<?php echo base_url('admin/chuyen-muc/tim-kiem/') ?>"> 
                   <div class="col-sm-2">
                     <label>Tên Chuyên Mục</label>
-                    <input type="text" name="tenchuyenmuc" class="form-control" placeholder="Tên chuyên mục">
+                    <input type="text" name="tenchuyenmuc" class="form-control" placeholder="Tên chuyên mục" value="<?php echo $post['tenchuyenmuc']; ?>">
                   </div>
                   <div class="col-sm-2">
                     <label>Hiển Thị Menu</label>
                     <select class="form-control" name="hienthitrenmenu">
                       <option value="" selected>--Chọn--</option>
-                      <option value="-1">Không Hiển Thị</option>
-                      <option value="1">Có Hiển Thị</option>
+                      <option value="-1" <?php echo $post['hienthitrenmenu'] == -1 ? "selected" : "" ; ?>>Không Hiển Thị</option>
+                      <option value="1" <?php echo $post['hienthitrenmenu'] == 1 ? "selected" : "" ; ?>>Có Hiển Thị</option>
                     </select>
                   </div>
                   <div class="col-sm-2">
                     <label>Hiển Thị Trang Chủ</label>
                     <select class="form-control" name="hienthitrangchu">
                       <option value="" selected>--Chọn--</option>
-                      <option value="-1">Không Hiển Thị</option>
-                      <option value="1">Có Hiển Thị</option>
+                      <option value="-1" <?php echo $post['hienthitrangchu'] == -1 ? "selected" : "" ; ?>>Không Hiển Thị</option>
+                      <option value="1" <?php echo $post['hienthitrangchu'] == 1 ? "selected" : "" ; ?>>Có Hiển Thị</option>
                     </select>
                   </div>
                   <div class="col-sm-2">
                     <label>Hiển Thị Widget</label>
                     <select class="form-control" name="hienthiwidget">
                       <option value="" selected>--Chọn--</option>
-                      <option value="-1">Không Hiển Thị</option>
-                      <option value="1">Có Hiển Thị</option>
+                      <option value="-1" <?php echo $post['hienthiwidget'] == -1 ? "selected" : "" ; ?>>Không Hiển Thị</option>
+                      <option value="1" <?php echo $post['hienthiwidget'] == 1 ? "selected" : "" ; ?>>Có Hiển Thị</option>
                     </select>
                   </div>
                   <div class="col-sm-2">
@@ -116,7 +116,7 @@
               <div class="card-footer clearfix">
                 <ul class="pagination pagination-sm m-0 float-right">
                 	<?php for($i = 1; $i <= $totalPages; $i++){ ?>
-                  		<li class="page-item"><a class="page-link" href="<?php echo base_url('admin/chuyen-muc/'.$i.'/trang/') ?>"><?php echo $i; ?></a></li>
+                  		<li class="page-item"><a class="page-link" href="<?php echo base_url('admin/chuyen-muc/tim-kiem/'.$i.'/trang/?tenchuyenmuc='.$post['tenchuyenmuc'].'&hienthitrenmenu='.$post['hienthitrenmenu'].'&hienthitrangchu='.$post['hienthitrangchu'].'&hienthiwidget='.$post['hienthiwidget']) ?>"><?php echo $i; ?></a></li>
                   	<?php } ?>      
                 </ul>
               </div>

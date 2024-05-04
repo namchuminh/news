@@ -55,7 +55,7 @@ class ChuyenMuc extends CI_Controller {
 
 	public function add()
 	{
-		$data['title'] = "Thêm chuyên mục sách";
+		$data['title'] = "Thêm chuyên mục bài viết";
 		$data['category'] = $this->Model_ChuyenMuc->getAll();
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
 			$tenchuyenmuc = $this->input->post('tenchuyenmuc');
@@ -123,7 +123,7 @@ class ChuyenMuc extends CI_Controller {
 			return redirect(base_url('admin/chuyen-muc/'));
 		}
 
-		$data['title'] = "Cập nhật chuyên mục sản phẩm";
+		$data['title'] = "Cập nhật chuyên mục bài viết";
 		$data['detail'] = $this->Model_ChuyenMuc->getById($machuyenmuc);
 		$data['category'] = $this->Model_ChuyenMuc->getAll();
 		if ($this->input->server('REQUEST_METHOD') === 'POST') {
@@ -195,6 +195,144 @@ class ChuyenMuc extends CI_Controller {
 
 		$this->session->set_flashdata('success', 'Xóa chuyên mục thành công!');
 		return redirect(base_url('admin/chuyen-muc/'));
+	}
+
+	public function search(){
+		if(!isset($_GET['tenchuyenmuc']) && !isset($_GET['hienthitrenmenu']) && !isset($_GET['hienthitrangchu']) && !isset($_GET['hienthiwidget'])){
+			return redirect(base_url('admin/chuyen-muc/'));
+		}
+
+		$tenchuyenmuc = $this->input->get('tenchuyenmuc');
+		$hienthitrenmenu = $this->input->get('hienthitrenmenu');
+		$hienthitrangchu = $this->input->get('hienthitrangchu');
+		$hienthiwidget = $this->input->get('hienthiwidget');
+
+		if(empty($tenchuyenmuc) && empty($hienthitrenmenu) && empty($hienthitrangchu) && empty($hienthiwidget)){
+			return redirect(base_url('admin/chuyen-muc/'));
+		}
+
+		
+		$data['post'] = array(
+			'tenchuyenmuc' => $tenchuyenmuc,
+			'hienthitrenmenu' => $hienthitrenmenu,
+			'hienthitrangchu' => $hienthitrangchu,
+			'hienthiwidget' => $hienthiwidget,
+		);
+
+		if(empty($tenchuyenmuc)){
+			$tenchuyenmuc = -99999;
+		}
+
+		if(empty($hienthitrenmenu)){
+			$hienthitrenmenu = -99999;
+		} 
+
+		if(empty($hienthitrangchu)){
+			$hienthitrangchu = -99999;
+		}
+
+		if(empty($hienthiwidget)){
+			$hienthiwidget = -99999;
+		}
+
+		if($hienthitrenmenu == -1){
+			$hienthitrenmenu = 0;
+		}
+
+		if($hienthitrangchu == -1){
+			$hienthitrangchu = 0;
+		}
+
+		if($hienthiwidget == -1){
+			$hienthiwidget = 0;
+		}
+
+		$totalRecords = $this->Model_ChuyenMuc->checkNumberSearch($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget);
+		$recordsPerPage = 10;
+		$totalPages = ceil($totalRecords / $recordsPerPage); 
+
+		$data['totalPages'] = $totalPages;
+		$data['list'] = $this->Model_ChuyenMuc->search($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget);
+		$data['title'] = "Chuyên mục bài viết";
+		return $this->load->view('Admin/View_ChuyenMucTimKiem', $data);
+	}
+
+	public function pageSearch($trang)
+	{
+		if(!isset($_GET['tenchuyenmuc']) && !isset($_GET['hienthitrenmenu']) && !isset($_GET['hienthitrangchu']) && !isset($_GET['hienthiwidget'])){
+			return redirect(base_url('admin/chuyen-muc/'));
+		}
+
+		$tenchuyenmuc = $this->input->get('tenchuyenmuc');
+		$hienthitrenmenu = $this->input->get('hienthitrenmenu');
+		$hienthitrangchu = $this->input->get('hienthitrangchu');
+		$hienthiwidget = $this->input->get('hienthiwidget');
+
+		if(empty($tenchuyenmuc) && empty($hienthitrenmenu) && empty($hienthitrangchu) && empty($hienthiwidget)){
+			return redirect(base_url('admin/chuyen-muc/'));
+		}
+
+		
+		$data['post'] = array(
+			'tenchuyenmuc' => $tenchuyenmuc,
+			'hienthitrenmenu' => $hienthitrenmenu,
+			'hienthitrangchu' => $hienthitrangchu,
+			'hienthiwidget' => $hienthiwidget,
+		);
+
+		if(empty($tenchuyenmuc)){
+			$tenchuyenmuc = -99999;
+		}
+
+		if(empty($hienthitrenmenu)){
+			$hienthitrenmenu = -99999;
+		} 
+
+		if(empty($hienthitrangchu)){
+			$hienthitrangchu = -99999;
+		}
+
+		if(empty($hienthiwidget)){
+			$hienthiwidget = -99999;
+		}
+
+		if($hienthitrenmenu == -1){
+			$hienthitrenmenu = 0;
+		}
+
+		if($hienthitrangchu == -1){
+			$hienthitrangchu = 0;
+		}
+
+		if($hienthiwidget == -1){
+			$hienthiwidget = 0;
+		}
+
+		$data['title'] = "Chuyên mục bài viết";
+		$totalRecords = $this->Model_ChuyenMuc->checkNumberSearch($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget);
+		$recordsPerPage = 10;
+		$totalPages = ceil($totalRecords / $recordsPerPage); 
+
+		if($trang < 1){
+			return redirect(base_url('admin/chuyen-muc/'));
+		}
+
+		if($trang > $totalPages){
+			return redirect(base_url('admin/chuyen-muc/'));
+		}
+
+		$start = ($trang - 1) * $recordsPerPage;
+
+
+		if($start == 0){
+			$data['totalPages'] = $totalPages;
+			$data['list'] = $this->Model_ChuyenMuc->search($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget);
+			return $this->load->view('Admin/View_ChuyenMucTimKiem', $data);
+		}else{
+			$data['totalPages'] = $totalPages;
+			$data['list'] = $this->Model_ChuyenMuc->search($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget,$start);
+			return $this->load->view('Admin/View_ChuyenMucTimKiem', $data);
+		}
 	}
 }
 

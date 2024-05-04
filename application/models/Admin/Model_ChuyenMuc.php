@@ -70,6 +70,20 @@ class Model_ChuyenMuc extends CI_Model {
 		return $result;
 	}
 
+	public function search($tenchuyenmuc, $hienthitrenmenu,$hienthitrangchu,$hienthiwidget, $start = 0, $end = 10){
+		$tenchuyenmuc = "%".$tenchuyenmuc."%";
+		$sql = "SELECT * FROM chuyenmuc WHERE TrangThai = 1 AND (TenChuyenMuc LIKE ? OR HienThiMenu = ? OR HienThiTrangChu = ? OR HienThiWidget = ?) ORDER BY MaChuyenMuc DESC LIMIT ?, ?";
+		$result = $this->db->query($sql, array($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget,$start, $end));
+		return $result->result_array();
+	}
+
+	public function checkNumberSearch($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget){
+		$tenchuyenmuc = "%".$tenchuyenmuc."%";
+		$sql = "SELECT * FROM chuyenmuc WHERE TrangThai = 1 AND (TenChuyenMuc LIKE ? OR HienThiMenu = ? OR HienThiTrangChu = ? OR HienThiWidget = ?)";
+		$result = $this->db->query($sql, array($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget));
+		return $result->num_rows();
+	}
+
 }
 
 /* End of file Model_ChuyenMuc.php */
