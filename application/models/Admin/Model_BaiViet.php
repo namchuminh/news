@@ -65,7 +65,7 @@ class Model_BaiViet extends CI_Model {
 		return $result->result_array();
 	}
 
-	public function search($tieude,$loaibaiviet,$thoigian, $start = 0, $end = 1){
+	public function search($tieude,$loaibaiviet,$thoigian, $start = 0, $end = 10){
 		$tieude = "%".$tieude."%";
 		$sql = "SELECT * FROM baiviet WHERE TrangThai = 1 AND (TieuDe LIKE ? OR LoaiBaiViet = ? OR DATE(ThoiGian) = ?) ORDER BY MaBaiViet DESC LIMIT ?, ?";
 		$result = $this->db->query($sql, array($tieude,$loaibaiviet,$thoigian,$start, $end));

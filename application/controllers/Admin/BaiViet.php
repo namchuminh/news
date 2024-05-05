@@ -292,7 +292,7 @@ class BaiViet extends CI_Controller {
 
 
 		$totalRecords = $this->Model_BaiViet->checkNumberSearch($tieude,$loaibaiviet,$thoigian);
-		$recordsPerPage = 1;
+		$recordsPerPage = 10;
 		$totalPages = ceil($totalRecords / $recordsPerPage); 
 
 		$data['totalPages'] = $totalPages;
@@ -332,7 +332,7 @@ class BaiViet extends CI_Controller {
 
 		$data['title'] = "Danh sách bài viết";
 		$totalRecords = $this->Model_BaiViet->checkNumberSearch($tieude,$loaibaiviet,$thoigian);
-		$recordsPerPage = 1;
+		$recordsPerPage = 10;
 		$totalPages = ceil($totalRecords / $recordsPerPage); 
 
 		if($trang < 1){
