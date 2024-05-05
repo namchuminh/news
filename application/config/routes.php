@@ -51,3 +51,11 @@ $route['admin/loai-the/(:any)/sua'] = 'Admin/The/update/$1';
 $route['admin/loai-the/(:any)/xoa'] = 'Admin/The/delete/$1';
 $route['admin/loai-the/tim-kiem'] = 'Admin/The/search';
 $route['admin/loai-the/tim-kiem/(:any)/trang'] = 'Admin/The/pageSearch/$1';
+
+$route['admin/bai-viet'] = 'Admin/BaiViet';
+$route['admin/bai-viet/(:any)/trang'] = 'Admin/BaiViet/page/$1';
+$route['admin/bai-viet/them'] = 'Admin/BaiViet/add';
+$route['admin/bai-viet/(:any)/sua'] = 'Admin/BaiViet/update/$1';
+$route['admin/bai-viet/(:any)/xoa'] = 'Admin/BaiViet/delete/$1';
+$route['admin/bai-viet/tim-kiem'] = 'Admin/BaiViet/search';
+$route['admin/bai-viet/tim-kiem/(:any)/trang'] = 'Admin/BaiViet/pageSearch/$1';

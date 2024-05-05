@@ -84,6 +84,13 @@ class Model_ChuyenMuc extends CI_Model {
 		return $result->num_rows();
 	}
 
+	public function getFull()
+	{
+		$sql = "SELECT * FROM chuyenmuc WHERE TrangThai = 1";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
 }
 
 /* End of file Model_ChuyenMuc.php */

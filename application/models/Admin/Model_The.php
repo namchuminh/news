@@ -74,6 +74,12 @@ class Model_The extends CI_Model {
 		return $result->num_rows();
 	}
 
+	public function getFull()
+	{
+		$sql = "SELECT * FROM the WHERE TrangThai = 1";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
 }
 
 /* End of file Model_the.php */
