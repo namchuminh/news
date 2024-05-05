@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2024 at 07:20 PM
+-- Generation Time: May 05, 2024 at 02:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -35,7 +35,8 @@ CREATE TABLE `baiviet` (
   `ThoiGian` datetime NOT NULL DEFAULT current_timestamp(),
   `AnhChinh` text NOT NULL,
   `DuongDan` text NOT NULL,
-  `BaiVietNoiBat` int(11) NOT NULL DEFAULT 0,
+  `HienThiTrangChu` int(11) NOT NULL DEFAULT 0,
+  `HienThiWidget` int(11) NOT NULL DEFAULT 0,
   `LoaiBaiViet` int(11) NOT NULL DEFAULT 1,
   `LuotXem` int(11) NOT NULL DEFAULT 1,
   `TrangThai` int(11) NOT NULL DEFAULT 1
@@ -45,8 +46,10 @@ CREATE TABLE `baiviet` (
 -- Dumping data for table `baiviet`
 --
 
-INSERT INTO `baiviet` (`MaBaiViet`, `TieuDe`, `NoiDung`, `MaNguoiDung`, `ThoiGian`, `AnhChinh`, `DuongDan`, `BaiVietNoiBat`, `LoaiBaiViet`, `LuotXem`, `TrangThai`) VALUES
-(1, 'Bài viết test', 'Bài viết test', 1, '2024-05-04 15:41:18', 'https://static.wixstatic.com/media/84b06e_5995423794034ffb9e898152c2f8c9e5~mv2.png/v1/fill/w_924,h_528,al_c,q_90,enc_auto/84b06e_5995423794034ffb9e898152c2f8c9e5~mv2.png', 'bai-viet-test', 0, 1, 1, 1);
+INSERT INTO `baiviet` (`MaBaiViet`, `TieuDe`, `NoiDung`, `MaNguoiDung`, `ThoiGian`, `AnhChinh`, `DuongDan`, `HienThiTrangChu`, `HienThiWidget`, `LoaiBaiViet`, `LuotXem`, `TrangThai`) VALUES
+(1, 'Bài viết test ab 11', '<p>Bài viết test ádasse 111</p>', 1, '2024-05-04 15:41:18', 'http://localhost/news/uploads/pen-inside-the-book-271ld3.png', 'bai-viet-test-ab-11', 0, 0, 4, 1, 1),
+(2, 'ádfasd', '<p>afdssadf ấdfsadf</p><p>ádfsadsad</p>', 1, '2024-05-05 17:48:15', 'http://localhost/news/uploads/65961212.png', 'adfasd', 2, 1, 1, 1, 1),
+(3, 'Tin tức mới gia sư', '<p>lorem inpusu</p>', 1, '2024-05-05 17:49:09', 'http://localhost/news/uploads/pen-inside-the-book-271ld2.png', 'tin-tuc-moi-gia-su', 0, 0, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -59,6 +62,16 @@ CREATE TABLE `baiviet_chuyenmuc` (
   `MaChuyenMuc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `baiviet_chuyenmuc`
+--
+
+INSERT INTO `baiviet_chuyenmuc` (`MaBaiViet`, `MaChuyenMuc`) VALUES
+(1, 1),
+(2, 2),
+(2, 4),
+(3, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -69,6 +82,17 @@ CREATE TABLE `baiviet_the` (
   `MaBaiViet` int(11) NOT NULL,
   `MaThe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `baiviet_the`
+--
+
+INSERT INTO `baiviet_the` (`MaBaiViet`, `MaThe`) VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(2, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -243,7 +267,8 @@ CREATE TABLE `the` (
 
 INSERT INTO `the` (`MaThe`, `TenThe`, `HienThiWidget`, `DuongDan`, `TrangThai`) VALUES
 (1, 'Thẻ mới', 1, 'the-moi', 1),
-(2, 'Bóng Đá', 1, 'bong-da', 1);
+(2, 'Bóng Đá', 1, 'bong-da', 1),
+(3, 'Người Nổi Tiếng', 0, 'nguoi-noi-tieng', 1);
 
 --
 -- Indexes for dumped tables
@@ -317,7 +342,7 @@ ALTER TABLE `the`
 -- AUTO_INCREMENT for table `baiviet`
 --
 ALTER TABLE `baiviet`
-  MODIFY `MaBaiViet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaBaiViet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `binhluan`
@@ -353,7 +378,7 @@ ALTER TABLE `nguoidung`
 -- AUTO_INCREMENT for table `the`
 --
 ALTER TABLE `the`
-  MODIFY `MaThe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `MaThe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
