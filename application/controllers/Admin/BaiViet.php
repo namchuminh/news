@@ -261,120 +261,78 @@ class BaiViet extends CI_Controller {
 		return redirect(base_url('admin/bai-viet/'));
 	}
 
+
 	public function search(){
-		if(!isset($_GET['tenchuyenmuc']) && !isset($_GET['hienthitrenmenu']) && !isset($_GET['hienthitrangchu']) && !isset($_GET['hienthiwidget'])){
+		if(!isset($_GET['tieude']) && !isset($_GET['loaibaiviet']) && !isset($_GET['thoigian'])){
 			return redirect(base_url('admin/bai-viet/'));
 		}
 
-		$tenchuyenmuc = $this->input->get('tenchuyenmuc');
-		$hienthitrenmenu = $this->input->get('hienthitrenmenu');
-		$hienthitrangchu = $this->input->get('hienthitrangchu');
-		$hienthiwidget = $this->input->get('hienthiwidget');
+		$tieude = $this->input->get('tieude');
+		$loaibaiviet = $this->input->get('loaibaiviet');
+		$thoigian = $this->input->get('thoigian');
 
-		if(empty($tenchuyenmuc) && empty($hienthitrenmenu) && empty($hienthitrangchu) && empty($hienthiwidget)){
+		if(empty($tieude) && empty($loaibaiviet) && empty($thoigian)){
 			return redirect(base_url('admin/bai-viet/'));
 		}
 
 		
 		$data['post'] = array(
-			'tenchuyenmuc' => $tenchuyenmuc,
-			'hienthitrenmenu' => $hienthitrenmenu,
-			'hienthitrangchu' => $hienthitrangchu,
-			'hienthiwidget' => $hienthiwidget,
+			'tieude' => $tieude,
+			'loaibaiviet' => $loaibaiviet,
+			'thoigian' => $thoigian
 		);
 
-		if(empty($tenchuyenmuc)){
-			$tenchuyenmuc = -99999;
+		if(empty($tieude)){
+			$tieude = -99999;
 		}
 
-		if(empty($hienthitrenmenu)){
-			$hienthitrenmenu = -99999;
+		if(empty($loaibaiviet)){
+			$loaibaiviet = -99999;
 		} 
 
-		if(empty($hienthitrangchu)){
-			$hienthitrangchu = -99999;
-		}
 
-		if(empty($hienthiwidget)){
-			$hienthiwidget = -99999;
-		}
-
-		if($hienthitrenmenu == -1){
-			$hienthitrenmenu = 0;
-		}
-
-		if($hienthitrangchu == -1){
-			$hienthitrangchu = 0;
-		}
-
-		if($hienthiwidget == -1){
-			$hienthiwidget = 0;
-		}
-
-		$totalRecords = $this->Model_BaiViet->checkNumberSearch($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget);
-		$recordsPerPage = 10;
+		$totalRecords = $this->Model_BaiViet->checkNumberSearch($tieude,$loaibaiviet,$thoigian);
+		$recordsPerPage = 1;
 		$totalPages = ceil($totalRecords / $recordsPerPage); 
 
 		$data['totalPages'] = $totalPages;
-		$data['list'] = $this->Model_BaiViet->search($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget);
+		$data['list'] = $this->Model_BaiViet->search($tieude,$loaibaiviet,$thoigian);
 		$data['title'] = "Danh sách bài viết";
 		return $this->load->view('Admin/View_BaiVietTimKiem', $data);
 	}
 
 	public function pageSearch($trang)
 	{
-		if(!isset($_GET['tenchuyenmuc']) && !isset($_GET['hienthitrenmenu']) && !isset($_GET['hienthitrangchu']) && !isset($_GET['hienthiwidget'])){
+		if(!isset($_GET['tieude']) && !isset($_GET['loaibaiviet']) && !isset($_GET['thoigian'])){
 			return redirect(base_url('admin/bai-viet/'));
 		}
 
-		$tenchuyenmuc = $this->input->get('tenchuyenmuc');
-		$hienthitrenmenu = $this->input->get('hienthitrenmenu');
-		$hienthitrangchu = $this->input->get('hienthitrangchu');
-		$hienthiwidget = $this->input->get('hienthiwidget');
+		$tieude = $this->input->get('tieude');
+		$loaibaiviet = $this->input->get('loaibaiviet');
+		$thoigian = $this->input->get('thoigian');
 
-		if(empty($tenchuyenmuc) && empty($hienthitrenmenu) && empty($hienthitrangchu) && empty($hienthiwidget)){
+		if(empty($tieude) && empty($loaibaiviet) && empty($thoigian)){
 			return redirect(base_url('admin/bai-viet/'));
 		}
 
 		
 		$data['post'] = array(
-			'tenchuyenmuc' => $tenchuyenmuc,
-			'hienthitrenmenu' => $hienthitrenmenu,
-			'hienthitrangchu' => $hienthitrangchu,
-			'hienthiwidget' => $hienthiwidget,
+			'tieude' => $tieude,
+			'loaibaiviet' => $loaibaiviet,
+			'thoigian' => $thoigian
 		);
 
-		if(empty($tenchuyenmuc)){
-			$tenchuyenmuc = -99999;
+		if(empty($tieude)){
+			$tieude = -99999;
 		}
 
-		if(empty($hienthitrenmenu)){
-			$hienthitrenmenu = -99999;
+		if(empty($loaibaiviet)){
+			$loaibaiviet = -99999;
 		} 
 
-		if(empty($hienthitrangchu)){
-			$hienthitrangchu = -99999;
-		}
-
-		if(empty($hienthiwidget)){
-			$hienthiwidget = -99999;
-		}
-
-		if($hienthitrenmenu == -1){
-			$hienthitrenmenu = 0;
-		}
-
-		if($hienthitrangchu == -1){
-			$hienthitrangchu = 0;
-		}
-
-		if($hienthiwidget == -1){
-			$hienthiwidget = 0;
-		}
-
 		$data['title'] = "Danh sách bài viết";
-		$totalRecords = $this->Model_BaiViet->checkNumberSearch($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget);
-		$recordsPerPage = 10;
+		$totalRecords = $this->Model_BaiViet->checkNumberSearch($tieude,$loaibaiviet,$thoigian);
+		$recordsPerPage = 1;
 		$totalPages = ceil($totalRecords / $recordsPerPage); 
 
 		if($trang < 1){
@@ -390,11 +348,11 @@ class BaiViet extends CI_Controller {
 
 		if($start == 0){
 			$data['totalPages'] = $totalPages;
-			$data['list'] = $this->Model_BaiViet->search($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget);
+			$data['list'] = $this->Model_BaiViet->search($tieude,$loaibaiviet,$thoigian);
 			return $this->load->view('Admin/View_BaiVietTimKiem', $data);
 		}else{
 			$data['totalPages'] = $totalPages;
-			$data['list'] = $this->Model_BaiViet->search($tenchuyenmuc,$hienthitrenmenu,$hienthitrangchu,$hienthiwidget,$start);
+			$data['list'] = $this->Model_BaiViet->search($tieude,$loaibaiviet,$thoigian,$start);
 			return $this->load->view('Admin/View_BaiVietTimKiem', $data);
 		}
 	}

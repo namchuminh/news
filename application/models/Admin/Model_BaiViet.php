@@ -65,17 +65,17 @@ class Model_BaiViet extends CI_Model {
 		return $result->result_array();
 	}
 
-	public function search($tenbaiviet,$hienthiwidget, $start = 0, $end = 10){
-		$tenbaiviet = "%".$tenbaiviet."%";
-		$sql = "SELECT * FROM baiviet WHERE TrangThai = 1 AND (Tenbaiviet LIKE ? OR HienThiWidget = ?) ORDER BY Mabaiviet DESC LIMIT ?, ?";
-		$result = $this->db->query($sql, array($tenbaiviet,$hienthiwidget,$start, $end));
+	public function search($tieude,$loaibaiviet,$thoigian, $start = 0, $end = 1){
+		$tieude = "%".$tieude."%";
+		$sql = "SELECT * FROM baiviet WHERE TrangThai = 1 AND (TieuDe LIKE ? OR LoaiBaiViet = ? OR DATE(ThoiGian) = ?) ORDER BY MaBaiViet DESC LIMIT ?, ?";
+		$result = $this->db->query($sql, array($tieude,$loaibaiviet,$thoigian,$start, $end));
 		return $result->result_array();
 	}
 
-	public function checkNumberSearch($tenbaiviet,$hienthiwidget){
-		$tenbaiviet = "%".$tenbaiviet."%";
-		$sql = "SELECT * FROM baiviet WHERE TrangThai = 1 AND (Tenbaiviet LIKE ? OR HienThiWidget = ?)";
-		$result = $this->db->query($sql, array($tenbaiviet,$hienthiwidget));
+	public function checkNumberSearch($tieude,$loaibaiviet,$thoigian){
+		$tieude = "%".$tieude."%";
+		$sql = "SELECT * FROM baiviet WHERE TrangThai = 1 AND (TieuDe LIKE ? OR LoaiBaiViet = ? OR DATE(ThoiGian) = ?)";
+		$result = $this->db->query($sql, array($tieude,$loaibaiviet,$thoigian));
 		return $result->num_rows();
 	}
 

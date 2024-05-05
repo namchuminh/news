@@ -28,21 +28,21 @@
                 <form class="row" action="<?php echo base_url('admin/bai-viet/tim-kiem/') ?>"> 
                   <div class="col-sm-2">
                     <label>Tiêu Đề Bài Viết</label>
-                    <input type="text" name="tieude" class="form-control" placeholder="Tiêu đề bài viết">
+                    <input type="text" name="tieude" class="form-control" placeholder="Tiêu đề bài viết" value="<?php echo $post['tieude']; ?>">
                   </div>
                   <div class="col-sm-2">
                     <label>Loại Bài Viết</label>
                     <select class="form-control" name="loaibaiviet">
                       <option value="" selected>--Chọn--</option>
-                      <option value="1">Bình Thường</option>
-                      <option value="2">Xu Hướng</option>
-                      <option value="3">Phổ Biến</option>
-                      <option value="4">Nổi Bật</option>
+                      <option value="1" <?php echo $post['loaibaiviet'] == 1 ? "selected" : ""; ?>>Bình Thường</option>
+                      <option value="2" <?php echo $post['loaibaiviet'] == 2 ? "selected" : ""; ?>>Xu Hướng</option>
+                      <option value="3" <?php echo $post['loaibaiviet'] == 3 ? "selected" : ""; ?>>Phổ Biến</option>
+                      <option value="4" <?php echo $post['loaibaiviet'] == 4 ? "selected" : ""; ?>>Nổi Bật</option>
                     </select>
                   </div>
                   <div class="col-sm-2">
                     <label>Ngày Đăng</label>
-                    <input type="date" name="thoigian" class="form-control">
+                    <input type="date" name="thoigian" class="form-control" value="<?php echo $post['thoigian']; ?>">
                   </div>
                   <div class="col-sm-2">
                     <label style="visibility:hidden;">Tìm Kiếm</label>
@@ -124,7 +124,7 @@
               <div class="card-footer clearfix">
                 <ul class="pagination pagination-sm m-0 float-right">
                   <?php for($i = 1; $i <= $totalPages; $i++){ ?>
-                      <li class="page-item"><a class="page-link" href="<?php echo base_url('admin/bai-viet/'.$i.'/trang/') ?>"><?php echo $i; ?></a></li>
+                      <li class="page-item"><a class="page-link" href="<?php echo base_url('admin/bai-viet/tim-kiem/'.$i.'/trang/?tieude='.$post['tieude'].'&loaibaiviet='.$post['loaibaiviet'].'&thoigian='.$post['thoigian']) ?>"><?php echo $i; ?></a></li>
                     <?php } ?>      
                 </ul>
               </div>
