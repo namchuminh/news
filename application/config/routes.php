@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'TrangChu';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -59,3 +59,4 @@ $route['admin/bai-viet/(:any)/sua'] = 'Admin/BaiViet/update/$1';
 $route['admin/bai-viet/(:any)/xoa'] = 'Admin/BaiViet/delete/$1';
 $route['admin/bai-viet/tim-kiem'] = 'Admin/BaiViet/search';
 $route['admin/bai-viet/tim-kiem/(:any)/trang'] = 'Admin/BaiViet/pageSearch/$1';
+
