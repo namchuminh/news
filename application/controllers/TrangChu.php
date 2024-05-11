@@ -7,6 +7,7 @@ class TrangChu extends MY_Controller {
 		parent::__construct();
 		$this->load->model('Web/Model_BaiViet');
 		$this->load->model('Web/Model_ChuyenMuc');
+		$this->load->model('Web/Model_GiaoDien');
 	}
 
 	public function index()
@@ -20,6 +21,9 @@ class TrangChu extends MY_Controller {
 		$data['categoryHome'] = $this->Model_BaiViet->getCategoryHome();
 		$data['popular'] = $this->Model_BaiViet->getPopular();
 		$data['news'] = $this->Model_BaiViet->getNews();
+		$data['bannerLogo'] = $this->Model_GiaoDien->getByType(1);
+		$data['bannerMid'] = $this->Model_GiaoDien->getByType(2);
+		$data['bannerWidget'] = $this->Model_GiaoDien->getByType(3);
 		return $this->load->view('Web/View_TrangChu', $data);
 	}
 

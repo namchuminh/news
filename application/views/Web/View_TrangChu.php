@@ -145,13 +145,13 @@
                     <div class="col-auto d-none d-lg-block">
                         <div class="header-links">
                             <ul>
-                                <li><i class="fal fa-calendar-days"></i><a href="blog.html">20 August, 2023</a></li>
-                                <li><a href="about.html">Privacy Policy</a></li>
-                                <li><a href="about.html">Terms & Conditions</a></li>
+                                <li><a href="#">Chính Sách</a></li>
+                                <li><a href="#">Giới Thiệu</a></li>
+                                <li><a href="#">Liên Hệ</a></li>
                                 <li>
                                     <a class="theme-toggler" href="#">
-                                        <span class="dark"><i class="fas fa-moon"></i>Dark Mode</span>
-                                        <span class="light"><i class="fas fa-sun-bright"></i>Light Mode</span>
+                                        <span class="dark"><i class="fas fa-moon"></i>Chế Độ Sáng</span>
+                                        <span class="light"><i class="fas fa-sun-bright"></i>Chế Độ Tối</span>
                                     </a>
                                 </li>
                             </ul>
@@ -160,14 +160,13 @@
                     <div class="col-auto">
                         <div class="header-links">
                             <ul>
-                                <li class="d-none d-sm-inline-block"><i class="far fa-user"></i><a href="blog.html">Login / register</a></li>
                                 <li>
                                     <div class="social-links">
-                                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                                        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                                        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                                        <a href="<?php echo $config[0]['Facebook']; ?>"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="<?php echo $config[0]['X']; ?>"><i class="fab fa-twitter"></i></a>
+                                        <a href="<?php echo $config[0]['Linkedin']; ?>"><i class="fab fa-linkedin-in"></i></a>
+                                        <a href="<?php echo $config[0]['Instagram']; ?>"><i class="fab fa-instagram"></i></a>
+                                        <a href="<?php echo $config[0]['Youtube']; ?>"><i class="fab fa-youtube"></i></a>
                                     </div>
                                 </li>
                             </ul>
@@ -189,10 +188,12 @@
                     </div>
                     <div class="col-lg-8 text-end">
                         <div class="header-ads">
-                            <a href="https://themeforest.net/user/themeholy/portfolio">
-                                <img class="light-img" src="<?php echo base_url('public/web/'); ?>assets/img/ads/ads_banner_1.jpg" alt="ads">
-                                <img class="dark-img" src="<?php echo base_url('public/web/'); ?>assets/img/ads/ads_banner_1_dark.jpg" alt="ads">
-                            </a>
+                            <?php if(count($bannerMid) >= 1){ ?>
+                                <a href="<?php echo $bannerMid[0]['DuongDan']; ?>">
+                                    <img style="height: 60px; width: 700px;" class="light-img" src="<?php echo $bannerMid[0]['HinhAnh']; ?>" alt="ads">
+                                    <img style="height: 60px; width: 700px;" class="dark-img" src="<?php echo $bannerMid[0]['HinhAnh']; ?>" alt="ads">
+                                </a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -651,12 +652,14 @@ Blog Area
 
 <?php $i++; ?>
 <?php endforeach ?>
-
+<?php if(count($bannerMid) >= 1){ ?>
     <div class="container">
-        <a href="https://themeforest.net/user/themeholy/portfolio">
-            <img src="<?php echo base_url('public/web/'); ?>assets/img/ads/ads_1.jpg" alt="ads" class="w-100">
+        <a href="<?php echo $bannerMid[0]['DuongDan']; ?>">
+            <img src="<?php echo $bannerMid[0]['HinhAnh']; ?>" style="height: 100px;" alt="ads" class="w-100">
         </a>
-    </div><!--==============================
+    </div>
+<?php } ?>
+<!--==============================
 Blog Area  
 ==============================-->
 
@@ -693,13 +696,15 @@ Blog Area
                 </div>
                 <div class="col-xl-3 mt-35 mt-xl-0 mb-10 sidebar-wrap">
                     <div class="sidebar-area">
-                        <div class="widget mb-30">
-                            <div class="widget-ads">
-                                <a href="https://themeforest.net/user/themeholy/portfolio">
-                                    <img class="w-100" src="<?php echo base_url('public/web/'); ?>assets/img/ads/siderbar_ads_1.jpg" alt="ads">
-                                </a>
+                        <?php if(count($bannerWidget) >= 1){ ?>
+                            <div class="widget mb-30">
+                                <div class="widget-ads">
+                                    <a href="<?php echo $bannerWidget[0]['DuongDan'] ?>">
+                                        <img style="height: 350px;" class="w-100" src="<?php echo $bannerWidget[0]['HinhAnh'] ?>" alt="ads">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
                         <div class="widget newsletter-widget2 mb-30" data-bg-src="<?php echo base_url('public/web/'); ?>assets/img/bg/particle_bg_1.png">
                             <h3 class="box-title-24">Đăng Ký Nhận Tin</h3>
                             <form class="newsletter-form">
@@ -759,36 +764,34 @@ Blog Area
                         <div class="widget footer-widget">
                             <div class="th-widget-about">
                                 <div class="about-logo">
-                                    <a href="home-newspaper.html"><img src="<?php echo base_url('public/web/'); ?>assets/img/logo-footer.svg" alt="Tnews"></a>
+                                    <a href="<?php echo base_url(); ?>"><img style="width: 142px; height: 36px" src="<?php echo $config[0]['Logo']; ?>" alt="Tnews"></a>
                                 </div>
-                                <p class="about-text">Magazines cover a wide subjects, including not limited to fashion, lifestyle, health, politics, business, Entertainment, sports, science,</p>
+                                <p class="about-text"><?php echo $config[0]['MoTaWebsite']; ?></p>
                                 <div class="th-social style-black">
-                                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                    <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="<?php echo $config[0]['Facebook']; ?>"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="<?php echo $config[0]['Youtube']; ?>"><i class="fab fa-youtube"></i></a>
+                                    <a href="<?php echo $config[0]['Instagram']; ?>"><i class="fab fa-instagram"></i></a>
+                                    <a href="<?php echo $config[0]['X']; ?>"><i class="fab fa-twitter"></i></a>
+                                    <a href="<?php echo $config[0]['Linkedin']; ?>"><i class="fab fa-linkedin-in"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-auto">
                         <div class="widget widget_nav_menu footer-widget">
-                            <h3 class="widget_title">Categories</h3>
+                            <h3 class="widget_title">Chuyên Mục</h3>
                             <div class="menu-all-pages-container">
                                 <ul class="menu">
-                                    <li><a href="blog.html">Political</a></li>
-                                    <li><a href="blog.html">Business</a></li>
-                                    <li><a href="blog.html">Health</a></li>
-                                    <li><a href="blog.html">Technology</a></li>
-                                    <li><a href="blog.html">Sports</a></li>
-                                    <li><a href="blog.html">Entertainment</a></li>
+                                    <?php foreach ($categoryFooter as $key => $value): ?>
+                                        <li><a href="<?php echo base_url('chuyen-muc/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TenChuyenMuc']; ?></a></li>
+                                    <?php endforeach ?>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-auto">
                         <div class="widget footer-widget">
-                            <h3 class="widget_title">Recent Posts</h3>
+                            <h3 class="widget_title">Bài Viết Mới</h3>
                             <div class="recent-post-wrap">
                                 <div class="recent-post">
                                     <div class="media-img">
@@ -817,7 +820,7 @@ Blog Area
                     </div>
                     <div class="col-md-6 col-xl-3">
                         <div class="widget widget_tag_cloud footer-widget">
-                            <h3 class="widget_title">Popular Tags</h3>
+                            <h3 class="widget_title">Loại Thẻ</h3>
                             <div class="tagcloud">
                                 <a href="blog.html">Sports</a>
                                 <a href="blog.html">Politics</a>

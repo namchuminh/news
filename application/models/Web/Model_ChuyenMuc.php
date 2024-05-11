@@ -22,6 +22,12 @@ class Model_ChuyenMuc extends CI_Model {
 		return $result->result_array();
 	}
 
+	public function getAllDisplay(){
+		$sql = "SELECT * FROM chuyenmuc WHERE TrangThai = 1 AND ChuyenMucCha IS NULL ORDER BY MaChuyenMuc DESC LIMIT 6";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
 }
 
 /* End of file Model_ChuyenMuc.php */

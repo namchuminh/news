@@ -8,10 +8,9 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
         $this->load->model('Web/Model_CauHinh');
         $this->load->model('Web/Model_ChuyenMuc');
-        $this->load->model('Web/Model_GiaoDien');
         $this->data['config'] = $this->Model_CauHinh->getAll();
-        $this->data['layout'] = $this->Model_GiaoDien->getAll();
         $this->data['category'] = $this->Model_ChuyenMuc->getAll();
+        $this->data['categoryFooter'] = $this->Model_ChuyenMuc->getAllDisplay();
         $this->load->vars($this->data);
     }
 
