@@ -120,9 +120,21 @@ class Model_BaiViet extends CI_Model {
 		return $result->result_array();
 	}
 
-	public function getRelated($machuyenmuc){
-		$sql = "SELECT baiviet.*, chuyenmuc.TenChuyenMuc, chuyenmuc.DuongDan, chuyenmuc.MaChuyenMuc AS DuongDanCM FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1 AND chuyenmuc.MaChuyenMuc = ? GROUP BY baiviet.MaBaiViet ORDER BY RAND() LIMIT 9";
-		$result = $this->db->query($sql, array($machuyenmuc));
+	public function getRelated($machuyenmuc,$mabaiviet){
+		$sql = "SELECT baiviet.*, chuyenmuc.TenChuyenMuc, chuyenmuc.DuongDan AS DuongDanCM FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1 AND chuyenmuc.MaChuyenMuc = ? AND baiviet.MaBaiViet != ? GROUP BY baiviet.MaBaiViet ORDER BY RAND() LIMIT 9";
+		$result = $this->db->query($sql, array($machuyenmuc, $mabaiviet));
+		return $result->result_array();
+	}
+
+	public function getPrevPost($machuyenmuc, $mabaiviet){
+		$sql = "SELECT baiviet.* FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1 AND baiviet.MaBaiViet < ? GROUP BY baiviet.MaBaiViet ORDER BY baiviet.MaBaiViet ASC LIMIT 1";
+		$result = $this->db->query($sql, array($mabaiviet));
+		return $result->result_array();
+	}
+
+	public function getNextPost($machuyenmuc, $mabaiviet){
+		$sql = "SELECT baiviet.* FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1 AND baiviet.MaBaiViet > ? GROUP BY baiviet.MaBaiViet ORDER BY baiviet.MaBaiViet ASC LIMIT 1";
+		$result = $this->db->query($sql, array($mabaiviet));
 		return $result->result_array();
 	}
 

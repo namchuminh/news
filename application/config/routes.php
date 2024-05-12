@@ -70,5 +70,7 @@ $route['bai-viet/(:any)'] = 'Web/BaiViet/detail/$1';
 
 $route['binh-luan'] = 'Web/BinhLuan';
 
+$route['lien-he'] = 'Web/LienHe';
+
 
 

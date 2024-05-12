@@ -10,6 +10,7 @@ class MY_Controller extends CI_Controller {
         $this->load->model('Web/Model_ChuyenMuc');
         $this->load->model('Web/Model_GiaoDien');
         $this->load->model('Web/Model_The');
+        $this->load->model('Web/Model_BaiViet');
         $this->data['config'] = $this->Model_CauHinh->getAll();
         $this->data['category'] = $this->Model_ChuyenMuc->getAll();
         $this->data['categoryFooter'] = $this->Model_ChuyenMuc->getAllDisplay();

@@ -35,28 +35,22 @@
                         <div class="widget footer-widget">
                             <h3 class="widget_title">Bài Viết Mới</h3>
                             <div class="recent-post-wrap">
-                                <div class="recent-post">
-                                    <div class="media-img">
-                                        <a href="blog-details.html"><img src="<?php echo base_url('public/web/'); ?>assets/img/blog/recent-post-2-1.jpg" alt="Blog Image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="post-title"><a class="hover-line" href="blog-details.html">Equality and justice for Every citizen</a></h4>
-                                        <div class="recent-post-meta">
-                                            <a href="blog.html"><i class="fal fa-calendar-days"></i>21 June, 2023</a>
+                                <?php foreach ($recent as $key => $value): ?>
+                                    <?php if($key == 2){ ?>
+                                        <?php break; ?>
+                                    <?php } ?>
+                                    <div class="recent-post">
+                                        <div class="media-img">
+                                            <a href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>"><img style="height: 80px;" src="<?php echo $value['AnhChinh'] ?>" alt="Blog Image"></a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="post-title"><a class="hover-line" href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TieuDe'] ?></a></h4>
+                                            <div class="recent-post-meta">
+                                                <a href="<?php echo base_url('bai-viet/?thoigian='.explode(' ',$value['ThoiGian'])[0]); ?>"><i class="fal fa-calendar-days"></i><?php echo explode(' ',$value['ThoiGian'])[0]; ?></a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="recent-post">
-                                    <div class="media-img">
-                                        <a href="blog-details.html"><img src="<?php echo base_url('public/web/'); ?>assets/img/blog/recent-post-2-2.jpg" alt="Blog Image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="post-title"><a class="hover-line" href="blog-details.html">Key eyes on the latest update of technology</a></h4>
-                                        <div class="recent-post-meta">
-                                            <a href="blog.html"><i class="fal fa-calendar-days"></i>22 June, 2023</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endforeach ?>
                             </div>
                         </div>
                     </div>

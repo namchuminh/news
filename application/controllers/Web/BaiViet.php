@@ -121,9 +121,11 @@ class BaiViet extends MY_Controller {
 			$data['listRandom'] = $this->Model_ChuyenMuc->getRandom();
 			$data['recent'] = $this->Model_BaiViet->getRecent();
 			$data['tagRandom'] = $this->Model_The->getRandom();
-			$data['related'] = $this->Model_BaiViet->getRelated($this->Model_BaiViet->detail($duongdan)[0]['MaChuyenMuc']);
+			$data['related'] = $this->Model_BaiViet->getRelated($this->Model_BaiViet->detail($duongdan)[0]['MaChuyenMuc'],$this->Model_BaiViet->detail($duongdan)[0]['MaBaiViet']);
 			$data['admin'] = $this->Model_NguoiDung->getById($this->Model_BaiViet->detail($duongdan)[0]['MaNguoiDung']);
 			$data['comment'] = $this->Model_BinhLuan->getByPostId($this->Model_BaiViet->detail($duongdan)[0]['MaBaiViet']);
+			$data['prev'] = $this->Model_BaiViet->getPrevPost($this->Model_BaiViet->detail($duongdan)[0]['MaChuyenMuc'],$this->Model_BaiViet->detail($duongdan)[0]['MaBaiViet']);
+			$data['next'] = $this->Model_BaiViet->getNextPost($this->Model_BaiViet->detail($duongdan)[0]['MaChuyenMuc'],$this->Model_BaiViet->detail($duongdan)[0]['MaBaiViet']);
 			return $this->load->view('Web/View_ChiTietBaiViet', $data);
 		}
 	}
