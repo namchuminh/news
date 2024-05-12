@@ -147,7 +147,7 @@
                             <ul>
                                 <li><a href="#">Chính Sách</a></li>
                                 <li><a href="#">Giới Thiệu</a></li>
-                                <li><a href="#">Liên Hệ</a></li>
+                                <li><a href="<?php echo base_url('lien-he/'); ?>">Liên Hệ</a></li>
                                 <li>
                                     <a class="theme-toggler" href="#">
                                         <span class="dark"><i class="fas fa-moon"></i>Chế Độ Sáng</span>

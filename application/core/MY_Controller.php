@@ -13,6 +13,7 @@ class MY_Controller extends CI_Controller {
         $this->load->model('Web/Model_BaiViet');
         $this->data['config'] = $this->Model_CauHinh->getAll();
         $this->data['category'] = $this->Model_ChuyenMuc->getAll();
+        $this->data['recent'] = $this->Model_BaiViet->getRecent();
         $this->data['categoryFooter'] = $this->Model_ChuyenMuc->getAllDisplay();
         $this->data['tagFooter'] = $this->Model_The->getRandom();
         $this->data['bannerLogo'] = $this->Model_GiaoDien->getByType(1);
