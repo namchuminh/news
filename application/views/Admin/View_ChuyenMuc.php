@@ -96,7 +96,7 @@
 	                      	<a href="<?php echo base_url('chuyen-muc/'.$value['DuongDan'].'/'); ?>" target="_blank"><?php echo $value['DuongDan']; ?></a>
 	                      </td>
                         <td><?php echo $value['HienThiMenu'] == 1 ? "Có hiển thị" : "Không hiển thị"; ?></td>
-                        <td><?php echo $value['HienThiTrangChu'] == 1 ? "Có hiển thị" : "Không hiển thị"; ?></td>
+                        <td><?php echo $value['HienThiTrangChu'] >= 1 ? "Có hiển thị" : "Không hiển thị"; ?></td>
                         <td><?php echo $value['HienThiWidget'] == 1 ? "Có hiển thị" : "Không hiển thị"; ?></td>
 	                      <td>
 	                      	<a href="<?php echo base_url('admin/chuyen-muc/'.$value['MaChuyenMuc'].'/sua/'); ?>" class="btn btn-primary" style="color: white;">

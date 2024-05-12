@@ -98,6 +98,7 @@ function generateOptions($categories, $chuyenmuccha, $parentId = NULL, $level = 
                     <select class="form-control" aria-label="Default select example" name="hienthitrangchu">
                       <option value="0" <?php if($detail[0]['HienThiTrangChu'] == 0){ echo "selected"; }?>>Không Hiển Thị</option>
                       <option value="1" <?php if($detail[0]['HienThiTrangChu'] == 1){ echo "selected"; }?>>Có Hiển Thị</option>
+                      <option value="2" <?php if($detail[0]['HienThiTrangChu'] == 2){ echo "selected"; }?>>Hiển Thị Cả Bài Viết Chuyên Mục Con</option>
                     </select>
                   </div>
                 </div>

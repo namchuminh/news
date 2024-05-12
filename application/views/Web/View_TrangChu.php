@@ -106,8 +106,8 @@
     </div>
     <div class="popup-search-box">
         <button class="searchClose"><i class="fal fa-times"></i></button>
-        <form action="#">
-            <input type="text" placeholder="Bạn đang tìm kiếm thông tin gì?">
+        <form action="<?php echo base_url('bai-viet/') ?>">
+            <input type="text" name="timkiem" placeholder="Bạn đang tìm kiếm thông tin gì?">
             <button type="submit"><i class="fal fa-search"></i></button>
         </form>
     </div><!--==============================
@@ -206,7 +206,7 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto d-lg-none d-block">
                             <div class="header-logo">
-                                <a href="home-newspaper.html"><img src="<?php echo base_url('public/web/'); ?>assets/img/logo-white.svg" alt="Tnews"></a>
+                                <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('public/web/'); ?>assets/img/logo-white.svg" alt="Tnews"></a>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -237,27 +237,22 @@
                 </div>
             </div>
         </div>
-    </header><!--==============================
+    </header>
+
+<!--==============================
 News Area 
 ==============================-->
     <div>
         <div class="container">
             <div class="news-area">
-                <div class="title">Breaking News :</div>
+                <div class="title">TIN TỨC MỚI :</div>
                 <div class="news-wrap">
                     <div class="row slick-marquee">
-                        <div class="col-auto">
-                            <a href="blog-details.html" class="breaking-news">Relaxation redefined, your beach resort sanctuary.</a>
-                        </div>
-                        <div class="col-auto">
-                            <a href="blog-details.html" class="breaking-news">From health to fashion, lifestyle news curated.</a>
-                        </div>
-                        <div class="col-auto">
-                            <a href="blog-details.html" class="breaking-news">Sun, sand, and luxury at our resort</a>
-                        </div>
-                        <div class="col-auto">
-                            <a href="blog-details.html" class="breaking-news">Relaxation redefined, your beach resort sanctuary.</a>
-                        </div>
+                        <?php foreach ($news as $key => $value): ?>
+                            <div class="col-auto">
+                                <a href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>" class="breaking-news"><?php echo $value['TieuDe']; ?></a>
+                            </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>
@@ -417,11 +412,8 @@ Blog Area
 ==============================-->
 <?php $i = 1; ?>
 <?php foreach ($categoryHome as $key => $value): ?>
-    <?php if($key == 2){ ?>
-        <?php break; ?>
-    <?php } ?> 
     <?php $chuyenmuccha = $value['MaChuyenMuc']; ?>
-    <?php if($key == 0){ ?>
+    <?php if($value['HienThiTrangChu'] == 2){ ?>
         <?php if(count($this->Model_BaiViet->getByIdCategoryParent($chuyenmuccha)) >= 1){ ?>
             <section class="space">
                 <div class="container">
@@ -470,7 +462,7 @@ Blog Area
                                             <div class="blog-style1">
                                                 <div class="blog-img">
                                                     <img style="width: 288px; height: 187px;" src="<?php echo $value['AnhChinh'] ?>" alt="blog image">
-                                                    <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('bai-viet/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
+                                                    <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('chuyen-muc/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
                                                 </div>
                                                 <h3 class="box-title-22"><a class="hover-line" href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TieuDe'] ?></a></h3>
                                                 <div class="blog-meta">
@@ -513,7 +505,7 @@ Blog Area
                                                     <div class="blog-style1">
                                                         <div class="blog-img">
                                                             <img style="width: 288px; height: 187px;" src="<?php echo $value['AnhChinh'] ?>" alt="blog image">
-                                                            <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('bai-viet/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
+                                                            <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('chuyen-muc/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
                                                         </div>
                                                         <h3 class="box-title-22"><a class="hover-line" href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TieuDe'] ?></a></h3>
                                                         <div class="blog-meta">
@@ -547,7 +539,7 @@ Blog Area
                                     <div class="blog-style1">
                                         <div class="blog-img">
                                             <img style="width: 392px; height: 310px;" src="<?php echo $value['AnhChinh'] ?>" alt="blog image">
-                                            <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('bai-viet/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
+                                            <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('chuyen-muc/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
                                         </div>
                                         <h3 class="box-title-23"><a class="hover-line" href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TieuDe'] ?></a></h3>
                                         <div class="blog-meta">
@@ -563,13 +555,13 @@ Blog Area
                     </div>
                     <div class="col-xl-4 mt-35 mt-xl-0">
                         <div class="nav tab-menu indicator-active" role="tablist">
-                            <button class="tab-btn active" id="nav2-one-tab" data-bs-toggle="tab" data-bs-target="#nav2-one" type="button" role="tab" aria-controls="nav2-one" aria-selected="true">Xem Nhiều</button>
-                            <button class="tab-btn" id="nav2-two-tab" data-bs-toggle="tab" data-bs-target="#nav2-two" type="button" role="tab" aria-controls="nav2-two" aria-selected="false">Phổ Biến</button>
-                            <button class="tab-btn" id="nav2-three-tab" data-bs-toggle="tab" data-bs-target="#nav2-three" type="button" role="tab" aria-controls="nav2-three" aria-selected="false">Nổi Bật</button>
+                            <button class="tab-btn active" id="nav2-one<?php echo $chuyenmuccha ?>-tab<?php echo $chuyenmuccha ?>" data-bs-toggle="tab" data-bs-target="#nav2-one<?php echo $chuyenmuccha ?>" type="button" role="tab" aria-controls="nav2-one<?php echo $chuyenmuccha ?>" aria-selected="true">Xem Nhiều</button>
+                            <button class="tab-btn" id="nav2-two<?php echo $chuyenmuccha ?>-tab" data-bs-toggle="tab" data-bs-target="#nav2-two<?php echo $chuyenmuccha ?>" type="button" role="tab" aria-controls="nav2-two<?php echo $chuyenmuccha ?>" aria-selected="false">Phổ Biến</button>
+                            <button class="tab-btn" id="nav2-three<?php echo $chuyenmuccha ?>-tab<?php echo $chuyenmuccha ?>" data-bs-toggle="tab" data-bs-target="#nav2-three<?php echo $chuyenmuccha ?>" type="button" role="tab" aria-controls="nav2-three<?php echo $chuyenmuccha ?>" aria-selected="false">Nổi Bật</button>
                         </div>
                         <div class="tab-content">
                             <!-- Single item -->
-                            <div class="tab-pane fade show active" id="nav2-one" role="tabpanel" aria-labelledby="nav2-one-tab">
+                            <div class="tab-pane fade show active" id="nav2-one<?php echo $chuyenmuccha ?>" role="tabpanel" aria-labelledby="nav2-one<?php echo $chuyenmuccha ?>-tab<?php echo $chuyenmuccha ?>">
                                 <div class="row gy-4">
                                     <?php foreach ($this->Model_BaiViet->getByIdCategoryParentTopView($chuyenmuccha) as $key => $value): ?>
                                         <?php if($key == 3){ ?>
@@ -581,7 +573,7 @@ Blog Area
                                                     <img style="width: 100px; height: 100px;" src="<?php echo $value['AnhChinh'] ?>" alt="blog image">
                                                 </div>
                                                 <div class="blog-content">
-                                                    <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('bai-viet/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
+                                                    <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('chuyen-muc/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
                                                     <h3 class="box-title-20"><a class="hover-line" href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TieuDe'] ?></a></h3>
                                                     <div class="blog-meta">
                                                         <a href="<?php echo base_url('bai-viet/?thoigian='.explode(' ',$value['ThoiGian'])[0]); ?>"><i class="fal fa-calendar-days"></i><?php echo explode(' ',$value['ThoiGian'])[0]; ?></a>
@@ -594,7 +586,7 @@ Blog Area
                                 </div>
                             </div>
                             <!-- Single item -->
-                            <div class="tab-pane fade" id="nav2-two" role="tabpanel" aria-labelledby="nav2-two-tab">
+                            <div class="tab-pane fade" id="nav2-two<?php echo $chuyenmuccha ?>" role="tabpanel" aria-labelledby="nav2-two<?php echo $chuyenmuccha ?>-tab">
                                 <div class="row gy-4">
                                     <?php foreach ($this->Model_BaiViet->getByIdCategoryParentPopular($chuyenmuccha) as $key => $value): ?>
                                         <?php if($key == 3){ ?>
@@ -606,7 +598,7 @@ Blog Area
                                                     <img style="width: 100px; height: 100px;" src="<?php echo $value['AnhChinh'] ?>" alt="blog image">
                                                 </div>
                                                 <div class="blog-content">
-                                                    <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('bai-viet/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
+                                                    <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('chuyen-muc/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
                                                     <h3 class="box-title-20"><a class="hover-line" href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TieuDe'] ?></a></h3>
                                                     <div class="blog-meta">
                                                         <a href="<?php echo base_url('bai-viet/?thoigian='.explode(' ',$value['ThoiGian'])[0]); ?>"><i class="fal fa-calendar-days"></i><?php echo explode(' ',$value['ThoiGian'])[0]; ?></a>
@@ -619,7 +611,7 @@ Blog Area
                                 </div>
                             </div>
                             <!-- Single item -->
-                            <div class="tab-pane fade" id="nav2-three" role="tabpanel" aria-labelledby="nav2-three-tab">
+                            <div class="tab-pane fade" id="nav2-three<?php echo $chuyenmuccha ?>" role="tabpanel" aria-labelledby="nav2-three<?php echo $chuyenmuccha ?>-tab<?php echo $chuyenmuccha ?>">
                                 <div class="row gy-4">
                                     <?php foreach ($this->Model_BaiViet->getByIdCategoryParentHot($chuyenmuccha) as $key => $value): ?>
                                         <?php if($key == 3){ ?>
@@ -631,7 +623,7 @@ Blog Area
                                                     <img style="width: 100px; height: 100px;" src="<?php echo $value['AnhChinh'] ?>" alt="blog image">
                                                 </div>
                                                 <div class="blog-content">
-                                                    <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('bai-viet/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
+                                                    <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('chuyen-muc/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
                                                     <h3 class="box-title-20"><a class="hover-line" href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TieuDe'] ?></a></h3>
                                                     <div class="blog-meta">
                                                         <a href="<?php echo base_url('bai-viet/?thoigian='.explode(' ',$value['ThoiGian'])[0]); ?>"><i class="fal fa-calendar-days"></i><?php echo explode(' ',$value['ThoiGian'])[0]; ?></a>
@@ -680,7 +672,7 @@ Blog Area
                                         <img style="width: 300px; height: 200px;" src="<?php echo $value['AnhChinh'] ?>" alt="blog image">
                                     </div>
                                     <div class="blog-content">
-                                        <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('bai-viet/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
+                                        <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('chuyen-muc/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
                                         <h3 class="box-title-24"><a class="hover-line" href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TieuDe'] ?></a></h3>
                                         <p class="blog-text"><?php echo substr(strip_tags($value['NoiDung']), 0, 133); ?></p>
                                         <div class="blog-meta">
@@ -741,7 +733,7 @@ Blog Area
                                 <img style="width: 392px; height: 310px;" src="<?php echo $value['AnhChinh'] ?>" alt="blog image">
                             </div>
                             <div class="blog-content">
-                                <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('bai-viet/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
+                                <a style="font-family: system-ui;" data-theme-color="#4E4BD0" href="<?php echo base_url('chuyen-muc/'.$value['DuongDanCM'].'/'); ?>" class="category"><?php echo $value['TenChuyenMuc'] ?></a>
                                 <h3 class="box-title-24"><a class="hover-line" href="<?php echo base_url('bai-viet/'.$value['DuongDan'].'/'); ?>"><?php echo $value['TieuDe'] ?></a></h3>
                                 <div class="blog-meta">
                                     <a href="#" style="font-family: system-ui;"><i class="far fa-user"></i>Đăng bởi: Admin</a>
@@ -822,18 +814,9 @@ Blog Area
                         <div class="widget widget_tag_cloud footer-widget">
                             <h3 class="widget_title">Loại Thẻ</h3>
                             <div class="tagcloud">
-                                <a href="blog.html">Sports</a>
-                                <a href="blog.html">Politics</a>
-                                <a href="blog.html">Business</a>
-                                <a href="blog.html">Music</a>
-                                <a href="blog.html">Food</a>
-                                <a href="blog.html">Technology</a>
-                                <a href="blog.html">Travels</a>
-                                <a href="blog.html">Health</a>
-                                <a href="blog.html">Fashions</a>
-                                <a href="blog.html">Animal</a>
-                                <a href="blog.html">Weather</a>
-                                <a href="blog.html">Movies</a>
+                                <?php foreach ($tagFooter as $key => $value): ?>
+                                    <a href="<?php echo base_url('loai-the/'.$value['DuongDan'].'/') ?>"><?php echo $value['TenThe'] ?></a>
+                                <?php endforeach ?>
                             </div>
                         </div>
                     </div>

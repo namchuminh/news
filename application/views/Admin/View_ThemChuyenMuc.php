@@ -92,6 +92,7 @@ function generateOptions($categories, $parentId = NULL, $level = 0) {
                     <select class="form-control" aria-label="Default select example" name="hienthitrangchu">
                       <option value="0" selected>Không Hiển Thị</option>
                       <option value="1">Có Hiển Thị</option>
+                      <option value="2">Hiển Thị Cả Bài Viết Chuyên Mục Con</option>
                     </select>
                   </div>
                 </div>

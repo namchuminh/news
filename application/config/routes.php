@@ -60,3 +60,15 @@ $route['admin/bai-viet/(:any)/xoa'] = 'Admin/BaiViet/delete/$1';
 $route['admin/bai-viet/tim-kiem'] = 'Admin/BaiViet/search';
 $route['admin/bai-viet/tim-kiem/(:any)/trang'] = 'Admin/BaiViet/pageSearch/$1';
 
+
+$route['chuyen-muc/(:any)'] = 'Web/ChuyenMuc/index/$1';
+$route['chuyen-muc/(:any)/trang/(:any)'] = 'Web/ChuyenMuc/page/$1/$2';
+
+$route['bai-viet'] = 'Web/BaiViet/index';
+$route['bai-viet/trang/(:any)'] = 'Web/BaiViet/page/$1';
+$route['bai-viet/(:any)'] = 'Web/BaiViet/detail/$1';
+
+$route['binh-luan'] = 'Web/BinhLuan';
+
+
+

@@ -41,7 +41,7 @@ class Model_BaiViet extends CI_Model {
 	}
 
 	public function getCategoryHome(){
-		$sql = "SELECT * FROM chuyenmuc WHERE TrangThai = 1 AND HienThiTrangChu = 1 AND ChuyenMucCha IS NULL ORDER BY MaChuyenMuc";
+		$sql = "SELECT * FROM chuyenmuc WHERE TrangThai = 1 AND HienThiTrangChu >= 1 AND ChuyenMucCha IS NULL ORDER BY MaChuyenMuc";
 		$result = $this->db->query($sql);
 		return $result->result_array();
 	}
@@ -85,6 +85,44 @@ class Model_BaiViet extends CI_Model {
 	public function getNews(){
 		$sql = "SELECT baiviet.*, chuyenmuc.TenChuyenMuc, chuyenmuc.DuongDan AS DuongDanCM FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1  GROUP BY baiviet.MaBaiViet ORDER BY baiviet.MaBaiViet DESC LIMIT 7";
 		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
+	public function search($tieude, $start = 0, $end = 8){
+		$tieude = "%".$tieude."%";
+		$sql = "SELECT baiviet.*, chuyenmuc.TenChuyenMuc, chuyenmuc.DuongDan AS DuongDanCM FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1 AND baiviet.TieuDe LIKE ? GROUP BY baiviet.MaBaiViet ORDER BY baiviet.MaBaiViet DESC LIMIT ?, ?";
+		$result = $this->db->query($sql, array($tieude, $start, $end));
+		return $result->result_array();
+	}
+
+	public function checkNumberSearch($tieude){
+		$tieude = "%".$tieude."%";
+		$sql = "SELECT baiviet.*, chuyenmuc.TenChuyenMuc, chuyenmuc.DuongDan AS DuongDanCM FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1 AND baiviet.TieuDe LIKE ? GROUP BY baiviet.MaBaiViet ORDER BY baiviet.MaBaiViet DESC";
+		$result = $this->db->query($sql, array($tieude));
+		return $result->num_rows();
+	}
+
+	public function time($thoigian, $start = 0, $end = 8){
+		$sql = "SELECT baiviet.*, chuyenmuc.TenChuyenMuc, chuyenmuc.DuongDan AS DuongDanCM FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1 AND DATE(baiviet.ThoiGian) = ? GROUP BY baiviet.MaBaiViet ORDER BY baiviet.MaBaiViet DESC LIMIT ?, ?";
+		$result = $this->db->query($sql, array($thoigian, $start, $end));
+		return $result->result_array();
+	}
+
+	public function checkNumberTime($thoigian){
+		$sql = "SELECT baiviet.*, chuyenmuc.TenChuyenMuc, chuyenmuc.DuongDan AS DuongDanCM FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1 AND DATE(baiviet.ThoiGian) = ? GROUP BY baiviet.MaBaiViet ORDER BY baiviet.MaBaiViet DESC";
+		$result = $this->db->query($sql, array($thoigian));
+		return $result->num_rows();
+	}
+
+	public function detail($duongdan){
+		$sql = "SELECT baiviet.*, chuyenmuc.TenChuyenMuc, chuyenmuc.DuongDan AS DuongDanCM, chuyenmuc.MaChuyenMuc FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1 AND baiviet.DuongDan = ? GROUP BY baiviet.MaBaiViet";
+		$result = $this->db->query($sql, array($duongdan));
+		return $result->result_array();
+	}
+
+	public function getRelated($machuyenmuc){
+		$sql = "SELECT baiviet.*, chuyenmuc.TenChuyenMuc, chuyenmuc.DuongDan, chuyenmuc.MaChuyenMuc AS DuongDanCM FROM baiviet, chuyenmuc, baiviet_chuyenmuc WHERE baiviet_chuyenmuc.MaBaiViet = baiviet.MaBaiViet AND baiviet_chuyenmuc.MaChuyenMuc = chuyenmuc.MaChuyenMuc AND baiviet.TrangThai = 1 AND chuyenmuc.MaChuyenMuc = ? GROUP BY baiviet.MaBaiViet ORDER BY RAND() LIMIT 9";
+		$result = $this->db->query($sql, array($machuyenmuc));
 		return $result->result_array();
 	}
 

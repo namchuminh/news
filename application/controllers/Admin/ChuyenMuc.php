@@ -80,7 +80,7 @@ class ChuyenMuc extends CI_Controller {
 				return $this->load->view('Admin/View_ThemChuyenMuc', $data);
 			}
 
-			if(($hienthitrangchu != 1) && ($hienthitrangchu != 0)){
+			if(($hienthitrangchu != 1) && ($hienthitrangchu != 0) && ($hienthitrangchu != 2)){
 				$data['error'] = "Vui lòng chọn hiển thị / không hiển thị bài viết ở trang chủ!";
 				return $this->load->view('Admin/View_ThemChuyenMuc', $data);
 			}
@@ -149,7 +149,7 @@ class ChuyenMuc extends CI_Controller {
 				return $this->load->view('Admin/View_SuaChuyenMuc', $data);
 			}
 
-			if(($hienthitrangchu != 1) && ($hienthitrangchu != 0)){
+			if(($hienthitrangchu != 1) && ($hienthitrangchu != 0) && ($hienthitrangchu != 2)){
 				$data['error'] = "Vui lòng chọn hiển thị / không hiển thị bài viết ở trang chủ!";
 				return $this->load->view('Admin/View_SuaChuyenMuc', $data);
 			}
